@@ -1,0 +1,67 @@
+Documents for summary
+
+Python version 3.14.3
+virtual Environment 
+|- python -m venv venv
+|- venv\Scripts\activate
+|- deactivate
+
+
+Since Django is already listed in your requirements.txt, activate your virtual environment first, then install: |- .\venv\Scripts\Activate.ps1
+                                 |- pip install -r requirements.txt
+
+Or install Django directly: pip install "Django>=5.0,<5.1"
+
+Verify installation: python -m django --version
+
+django vesion = 5.0.14
+
+help to upgrade version : pip install pip --upgrade 
+
+(venv) PS C:\Users\us\Desktop\saas\src> pip freeze
+asgiref==3.11.1
+Django==5.0.14
+sqlparse==0.5.5
+tzdata==2025.3
+
+django-admin : help to creating and managing Django projects, apps, database migrations, and admin tasks.
+
+Noted: 
+
+Main use cases
+create project: django-admin startproject projectname
+create app: django-admin startapp appname
+database schema:
+django-admin makemigrations
+django-admin migrate
+run checks: django-admin check
+create superuser: django-admin createsuperuser
+collect static for deploy: django-admin collectstatic
+run tests: django-admin test
+launch dev server (usually from project dir): python manage.py runserver (django-admin runserver also works with --settings)
+key note
+Use python manage.py <command> from project root for your specific project settings automatically (recommended).
+
+django-admin  startproject cfehome
+python manage.py runserver
+
+
+import and provide routes inside the : urls.py file
+
+from django.contrib import admin
+from django.urls import path
+from .views import home_page_view
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', home_page_view, name='home'),
+    # path('home_page', home_page_view, name='home'),
+
+]
+
+
+python manage.py is a command-line utility automatically create with every django
+
+python manage.py startapp : help to create django aap
+
+
