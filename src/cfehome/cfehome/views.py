@@ -8,18 +8,24 @@ from visits.models import PageVisit
 
 this_dir = pathlib.Path(__file__).parent
 def home_page_view(request, *args, **kwargs):
-    page_title = "HomePage-Saas"
+    return about_page_view(request, *args, **kwargs)
+    
+def about_page_view(request, *args, **kwargs):
+    page_title = "About Page"
     total_visits = PageVisit.objects.all()
     page_visits = PageVisit.objects.filter(path=request.path)
     html_ = "home.html"
+    try:
+        percent =  (page_visits.count() *100.0) / total_visits.count()
+    except:
+        percent = 0
     context_page ={
         "page_title": page_title,
         "total_page_visits": total_visits.count(),
-        "percentage": (page_visits.count() *100.0) / total_visits.count(),
+        "percentage":percent,
         "page_visits_count" : page_visits.count()
 
     }
-
     PageVisit.objects.create(path=request.path)
     return render(request, html_, context_page)
 
